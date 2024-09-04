@@ -30,7 +30,7 @@ export default function App() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit text-xl">Guayava Devs</p>
+          <p className="font-bold text-inherit text-xl">Guayaba Devs</p>
         </NavbarBrand>
       </NavbarContent>
 
