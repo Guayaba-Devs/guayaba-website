@@ -2,12 +2,12 @@ import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { motion } from "framer-motion";
 
-const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_API_KEY; // Coloca aquí tu token de Mapbox
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_API_KEY;
 
 const LocationsComponent = () => {
   return (
-    <section className="relative w-screen bg-gray-900 text-white py-20 px-5">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-screen bg-gray-900 text-white py-20 px-5 mx-auto">
+      <div className="max-w-7xl mx-auto text-white md:bg-slate-100 sm:p-2 md:p-5 md:rounded-xl md:text-slate-700">
         <motion.h2
           className="text-4xl md:text-4xl lg:text-5xl font-bold text-center mb-10"
           initial={{ opacity: 0, y: -50 }}
@@ -31,7 +31,7 @@ const LocationsComponent = () => {
         </motion.p>
 
         <motion.div
-          className="w-full h-96"
+          className="w-full h-96 mx-auto"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, ease: "easeOut" }}

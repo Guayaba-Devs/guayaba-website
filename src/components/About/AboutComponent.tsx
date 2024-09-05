@@ -31,14 +31,14 @@ const AboutComponent = () => {
 
         <div className="flex flex-wrap justify-center gap-8">
           <motion.div
-            className="w-full h-max sm:w-1/3"
+            className="w-full h-max sm:w-1/3 "
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             viewport={{ once: false }}
           >
-            <Card isHoverable isPressable className="p-6">
+            <Card isHoverable isPressable className="p-6 bg-slate-100">
               <CardHeader>
                 <h3 className="text-2xl font-semibold text-orange-400">
                   Nuestra Historia
@@ -62,7 +62,7 @@ const AboutComponent = () => {
             whileHover={{ scale: 1.05 }}
             viewport={{ once: false }}
           >
-            <Card isHoverable isPressable className="p-6">
+            <Card isHoverable isPressable className="p-6 bg-slate-100">
               <CardHeader>
                 <h3 className="text-2xl font-semibold text-orange-400">
                   Nuestra Misión
@@ -86,7 +86,7 @@ const AboutComponent = () => {
             whileHover={{ scale: 1.05 }}
             viewport={{ once: false }}
           >
-            <Card isHoverable isPressable className="p-6">
+            <Card isHoverable isPressable className="p-6 bg-slate-100">
               <CardHeader>
                 <h3 className="text-2xl font-semibold text-orange-400">
                   Nuestra Comunidad
