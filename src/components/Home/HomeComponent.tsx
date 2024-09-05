@@ -26,7 +26,7 @@ const HomeComponent = () => {
       ) : (
         <motion.img
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg"
+          src="/bg.webp"
           alt="Background"
           initial={{ scale: 1.2 }}
           animate={{ scale: 1 }}
