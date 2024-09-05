@@ -1,7 +1,7 @@
 import "./App.css";
 
 import Navbar from "./components/Navbar/Navbar";
-// import AboutComponent from "./components/About/AboutComponent";
+import AboutComponent from "./components/About/AboutComponent";
 import HomeComponent from "./components/Home/HomeComponent";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Navbar />
       <HomeComponent />
 
-      {/* <AboutComponent /> */}
+      <AboutComponent />
     </>
   );
 }
