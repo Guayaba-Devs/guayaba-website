@@ -51,7 +51,7 @@ const HomeComponent = () => {
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
         <motion.h1
-          className="text-4xl font-bold mb-4"
+          className="text-4xl md:text-4xl lg:text-6xl font-bold mb-4"
           initial={{ opacity: 0, scale: 0 }}
           whileInView={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
