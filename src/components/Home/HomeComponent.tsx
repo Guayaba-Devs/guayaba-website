@@ -3,10 +3,8 @@ import { motion } from "framer-motion";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
-import bgVideo from "/bg.mp4";
-
 const HomeComponent = () => {
-  const isVideo = true;
+  const isVideo = false;
 
   const particlesInit = async (main: any) => {
     await loadFull(main);
@@ -17,7 +15,7 @@ const HomeComponent = () => {
       {isVideo ? (
         <motion.video
           className="absolute inset-0 w-full h-full object-cover"
-          src={bgVideo}
+          src=""
           autoPlay
           loop
           muted
@@ -28,7 +26,7 @@ const HomeComponent = () => {
       ) : (
         <motion.img
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://images.pexels.com/photos/534164/pexels-photo-534164.jpeg"
+          src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg"
           alt="Background"
           initial={{ scale: 1.2 }}
           animate={{ scale: 1 }}
