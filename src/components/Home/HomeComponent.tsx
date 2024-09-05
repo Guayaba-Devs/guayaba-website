@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
+import bgVideo from "/bg.mp4";
+
 const HomeComponent = () => {
   const isVideo = true;
 
@@ -15,7 +17,7 @@ const HomeComponent = () => {
       {isVideo ? (
         <motion.video
           className="absolute inset-0 w-full h-full object-cover"
-          src="src/assets/bg.mp4"
+          src={bgVideo}
           autoPlay
           loop
           muted
