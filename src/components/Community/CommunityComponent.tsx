@@ -1,4 +1,4 @@
-import { Button, Image } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -21,6 +21,18 @@ const teamMembers = [
     area: "Fullstack Developer",
     role: "Co-fundador",
     image: "https://avatars.githubusercontent.com/u/47402911?v=4",
+  },
+  {
+    name: "Lizette Leal",
+    area: "Diseño gráfico",
+    role: "Diseño",
+    image: "/liz.jpg",
+  },
+  {
+    name: "Erick Gutierrez",
+    area: "Marketing",
+    role: "Fotografía",
+    image: "/mike.jpg",
   },
 ];
 
@@ -72,6 +84,27 @@ const CommunitySection = () => {
     exit: { opacity: 0, x: -50, scale: 0.8 },
   };
 
+  const imgVariants = {
+    enter: (direction: number) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+
   return (
     <section className="relative w-screen bg-gray-900 text-white py-20 px-5">
       <div className="max-w-7xl mx-auto text-center mb-10">
@@ -108,20 +141,30 @@ const CommunitySection = () => {
                   className="mx-4 bg-gray-800 rounded-xl shadow-lg p-6"
                   key={index}
                   initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
                   variants={cardVariants}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  whileInView={{ opacity: 1, scale: 1 }}
                   style={{ minWidth: "250px" }}
                   viewport={{ once: false }}
                 >
                   <div className="relative w-full flex justify-center mb-5">
                     {/* Imagen del usuario */}
-                    <Image
+                    <motion.img
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      variants={imgVariants}
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                      }}
+                      viewport={{ once: false }}
                       src={member.image}
                       alt={member.name}
                       width={150}
                       height={150}
+                      max-width={150}
                       className="rounded-full"
                       style={{
                         filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
