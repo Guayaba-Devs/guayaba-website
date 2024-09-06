@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const teamMembers = [
@@ -38,7 +38,6 @@ const teamMembers = [
 
 const CommunitySection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const [cardsPerView, setCardsPerView] = useState(1);
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const CommunitySection = () => {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === teamMembers.length - cardsPerView ? 0 : prevIndex + 1
+      prevIndex + cardsPerView >= teamMembers.length ? 0 : prevIndex + 1
     );
   };
 
@@ -79,30 +78,29 @@ const CommunitySection = () => {
   }, [cardsPerView]);
 
   const cardVariants = {
-    hidden: { opacity: 0, x: 50, scale: 0.8 },
-    visible: { opacity: 1, x: 0, scale: 1 },
-    exit: { opacity: 0, x: -50, scale: 0.8 },
-  };
-
-  const imgVariants = {
-    enter: (direction: number) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
-    center: {
-      zIndex: 1,
+    initial: (direction: number) => ({
+      x: direction > 0 ? 100 : -100,
+      opacity: 0,
+    }),
+    animate: {
       x: 0,
       opacity: 1,
     },
-    exit: (direction: number) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0,
-      };
-    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 100 : -100,
+      opacity: 0,
+    }),
+  };
+
+  const [direction, setDirection] = useState(0);
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    if (newDirection > 0) {
+      handleNext();
+    } else {
+      handlePrev();
+    }
   };
 
   return (
@@ -111,9 +109,8 @@ const CommunitySection = () => {
         <motion.h2
           className="text-5xl font-bold mb-4"
           initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: false }}
         >
           Nuestro <span className="text-orange-400">Team</span>
         </motion.h2>
@@ -125,7 +122,7 @@ const CommunitySection = () => {
       <div className="relative flex items-center justify-center">
         <Button
           isIconOnly={true}
-          onClick={handlePrev}
+          onClick={() => paginate(-1)}
           className="absolute z-50 left-0 bg-orange-400 text-white p-2 rounded-full hover:bg-orange-500"
         >
           &#8592;
@@ -133,61 +130,50 @@ const CommunitySection = () => {
 
         {/* Carrusel */}
         <div className="flex overflow-hidden w-full justify-center">
-          <AnimatePresence initial={false} mode="wait">
-            {teamMembers
-              .slice(currentIndex, currentIndex + cardsPerView)
-              .map((member, index) => (
-                <motion.div
-                  className="mx-4 bg-gray-800 rounded-xl shadow-lg p-6"
-                  key={index}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  variants={cardVariants}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  style={{ minWidth: "250px" }}
-                  viewport={{ once: false }}
-                >
-                  <div className="relative w-full flex justify-center mb-5">
-                    {/* Imagen del usuario */}
-                    <motion.img
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      variants={imgVariants}
-                      transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 },
-                      }}
-                      viewport={{ once: false }}
-                      src={member.image}
-                      alt={member.name}
-                      width={150}
-                      height={150}
-                      max-width={150}
-                      className="rounded-full"
-                      style={{
-                        filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
-                      }}
-                    />
-                  </div>
+          {teamMembers
+            .slice(currentIndex, currentIndex + cardsPerView)
+            .map((member, index) => (
+              <motion.div
+                key={member.name}
+                className="mx-4 bg-gray-800 rounded-xl shadow-lg p-6"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                custom={direction}
+                variants={cardVariants}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                style={{ minWidth: "250px" }}
+                layout
+              >
+                <div className="relative w-full flex justify-center mb-5">
+                  {/* Imagen del usuario */}
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    width={150}
+                    height={150}
+                    className="rounded-full"
+                    style={{
+                      filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
+                    }}
+                  />
+                </div>
 
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold">{member.name}</h3>
-                    <p className="text-sm text-gray-400">{member.area}</p>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold">{member.name}</h3>
+                  <p className="text-sm text-gray-400">{member.area}</p>
 
-                    <Button className="mt-3 text-sm bg-orange-400 text-white rounded-md p-1">
-                      {member.role}
-                    </Button>
-                  </div>
-                </motion.div>
-              ))}
-          </AnimatePresence>
+                  <Button className="mt-3 text-sm bg-orange-400 text-white rounded-md p-1">
+                    {member.role}
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
         </div>
 
         <Button
           isIconOnly={true}
-          onClick={handleNext}
+          onClick={() => paginate(1)}
           className="absolute right-0 bg-orange-400 text-white p-2 rounded-full hover:bg-orange-500"
         >
           &#8594;
