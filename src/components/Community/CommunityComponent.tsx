@@ -132,7 +132,7 @@ const CommunitySection = () => {
         <div className="flex overflow-hidden w-full justify-center">
           {teamMembers
             .slice(currentIndex, currentIndex + cardsPerView)
-            .map((member, index) => (
+            .map((member) => (
               <motion.div
                 key={member.name}
                 className="mx-4 bg-gray-800 rounded-xl shadow-lg p-6"
