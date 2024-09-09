@@ -5,34 +5,40 @@ import { useState, useEffect } from "react";
 const teamMembers = [
   {
     name: "Josafat Jimenez",
-    area: "Fullstack Developer & Devops",
+    area: "Desarrollador Fullstack & Devops",
     role: "Fundador",
     image:
       "https://avatars.githubusercontent.com/u/88176494?s=400&u=6b5abccfe8c982218614bfe752803c8bb28536a9&v=4",
   },
   {
     name: "Ian Vega",
-    area: "Fullstack Developer & Mobile Developer",
+    area: "Desarrollador Fullstack & Mobile",
     role: "Fundador",
     image: "https://avatars.githubusercontent.com/u/94271969?v=4",
   },
   {
     name: "Ivan Ramirez",
-    area: "Fullstack Developer",
+    area: "Desarrollador Fullstack",
     role: "Co-fundador",
     image: "https://avatars.githubusercontent.com/u/47402911?v=4",
   },
   {
     name: "Lizette Leal",
-    area: "Diseño gráfico",
+    area: "Diseñadora gráfica",
     role: "Diseño",
     image: "/liz.jpg",
   },
   {
     name: "Erick Gutierrez",
-    area: "Marketing",
+    area: "Marketing Digital",
     role: "Fotografía",
     image: "/mike.jpg",
+  },
+  {
+    name: "Pablo Aguilar",
+    area: "Desarrollador de Software",
+    role: "Desarrollador",
+    image: "/pablo.jpg",
   },
 ];
 
@@ -111,6 +117,7 @@ const CommunitySection = () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: false }}
         >
           Nuestro <span className="text-orange-400">Team</span>
         </motion.h2>
@@ -143,6 +150,7 @@ const CommunitySection = () => {
                 variants={cardVariants}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 style={{ minWidth: "250px" }}
+                viewport={{ once: false }}
                 layout
               >
                 <div className="relative w-full flex justify-center mb-5">
