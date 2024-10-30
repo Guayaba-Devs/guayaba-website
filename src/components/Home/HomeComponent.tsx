@@ -100,7 +100,7 @@ const HomeComponent = () => {
               className="text-purple-800"
               isExternal
               aria-label="Discord"
-              href="https://discord.gg/EZ4mqexd"
+              href="https://discord.gg/WpQYjFpJ"
             >
               <i className="fa-brands fa-discord"></i>
             </Button>
